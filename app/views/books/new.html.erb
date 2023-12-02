@@ -1,0 +1,23 @@
+<h2>New Book</h2>
+
+<!--バリデーションエラーメッセージ-->
+<% if @book.errors.any? %>
+ <%= @book.errors.count %>errors prohibited this book from being saved:
+ <ul>
+  <% @book.errors.full_messages.each do |message| %>
+   <li><%= message %></li>
+  <% end %>
+ </ul>
+<% end %>
+
+<%= form_with model: @book, url: '/books', method: :post do |f| %>
+
+ <h3>Title</h3>
+ <%= f.text_field :title %>
+
+ <h3>Body</h3>
+ <%= f.text_area :body %>
+
+ <div><%= f.submit 'Create Book' %></div>
+
+<% end %>
